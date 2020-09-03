@@ -18,9 +18,10 @@ with open(inventory) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
     for row in csv_reader:
-         key = row[1]
+         key = urlparse.unquote(row[1])
          enc_status = row[7]
-         if row[2] >= 1073741824 :
+         print(key)
+         if int(row[2]) > 1073741824 :
            print("file %s is too large." %key)
            continue
          if(enc_status == 'FALSE' or enc_status == 'false'):

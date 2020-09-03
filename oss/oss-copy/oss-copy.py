@@ -20,6 +20,8 @@ with open(inventory) as csv_file:
     for row in csv_reader:
          key = row[1]
          enc_status = row[7]
+         if row[2] >= 1073741824 :
+           continue
          if(enc_status == 'FALSE' or enc_status == 'false'):
              bucket.copy_object(bucket_name, key, key)
          line_count = line_count + 1

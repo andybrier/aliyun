@@ -21,6 +21,7 @@ with open(inventory) as csv_file:
          key = row[1]
          enc_status = row[7]
          if row[2] >= 1073741824 :
+           print("file %s is too large." %key)
            continue
          if(enc_status == 'FALSE' or enc_status == 'false'):
              bucket.copy_object(bucket_name, key, key)

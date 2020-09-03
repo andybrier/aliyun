@@ -17,4 +17,6 @@
   >
   > 如果bucket设置了多版本，则会生成新版本的文件，否则会覆盖原来版本的文件。[参考](https://help.aliyun.com/document_detail/118923.html?spm=a2c4g.11186623.6.935.79045a98RR5pi1)
   >
+  > 大于`1G`的文件不会处理
+  >
  

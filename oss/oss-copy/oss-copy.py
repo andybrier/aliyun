@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import oss2
 import csv
+import urlparse
 
 access_key = 'LT4R'
 access_secret = 'f66S'
@@ -20,7 +21,6 @@ with open(inventory) as csv_file:
     for row in csv_reader:
          key = urlparse.unquote(row[1])
          enc_status = row[7]
-         print(key)
          if int(row[2]) > 1073741824 :
            print("file %s is too large." %key)
            continue

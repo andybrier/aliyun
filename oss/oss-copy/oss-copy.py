@@ -23,4 +23,4 @@ with open(inventory) as csv_file:
          if(enc_status == 'FALSE' or enc_status == 'false'):
              bucket.copy_object(bucket_name, key, key)
          line_count = line_count + 1
-         print('%d\n' %line_count)
+         print('%d' %line_count)

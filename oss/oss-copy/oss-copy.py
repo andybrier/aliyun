@@ -55,6 +55,7 @@ def main():
           print("start to proccess file: %s" %inventory)
           process(inventory)
           print("success proccessed file: %s" %inventory)
+          subprocess.call('rm %s' %inventory, shell=True)
 
 
 

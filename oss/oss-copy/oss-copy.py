@@ -35,7 +35,7 @@ def process(inventory):
           print(".")
 
 def main():
-  #down load manifest file 
+  #download manifest file 
   menifest_file_name = manifest_url.split("/")[-1]
   cmd='wget -O %s %s' % (menifest_file_name, manifest_url)
   subprocess.call(cmd, shell=True)
@@ -45,12 +45,14 @@ def main():
   with open( menifest_file_name,'r') as menifest:
         m_json = json.load(menifest)
         for csv_file in m_json['files']:
+          #download inventory gzip file:  xxxx.csv.gz
           local_gz_file = csv_file['key'].split("/")[-1]
           down_csv_cmd = 'wget -O %s %s' % (local_gz_file, host + '/' + csv_file['key'])
           subprocess.call(down_csv_cmd, shell=True)
           #gzip
           ugzip = 'gzip -d %s' %local_gz_file
           subprocess.call(ugzip, shell=True)
+          #final inventory csv file: xxxx.csv
           inventory =  os.path.splitext(local_gz_file)[0]
           print("start to proccess file: %s" %inventory)
           process(inventory)

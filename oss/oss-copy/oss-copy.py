@@ -19,6 +19,7 @@ manifest_url = 'https://mybucket.oss-cn-beijing.aliyuncs.com/mybucket/all/2020-0
 auth = oss2.Auth(access_key,  access_secret)
 bucket = oss2.Bucket(auth, domain, bucket_name)
 
+
 directory = ''
 if len(sys.argv) > 1:
   directory = sys.argv[1]
@@ -47,9 +48,6 @@ def main():
   menifest_file_name = manifest_url.split("/")[-1]
   bucket.get_object_to_file(urlparse.urlparse(manifest_url).path.lstrip('/'), menifest_file_name)
   
-
-    
-
   print("success get menifest file: %s" %manifest_url)
   # https://andybrier.oss-cn-beijing.aliyuncs.com'
   with open( menifest_file_name,'r') as menifest:

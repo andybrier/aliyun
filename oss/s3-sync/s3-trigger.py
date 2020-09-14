@@ -9,12 +9,12 @@ import urllib
 #aws sqs
 region_name = 'ap-east-1'
 queue_name = 's3-to-oss'
-max_queue_messages = 10
 aws_access_key_id = 'AKIARJH'
 aws_secret_access_key = 'YodFIlyYpIgRqu7HtSwDIW'
 sqs = boto3.resource('sqs', region_name=region_name,
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key)
+max_queue_messages = 10
 
 
 #aliyun

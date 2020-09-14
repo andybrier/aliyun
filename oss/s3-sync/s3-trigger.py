@@ -5,8 +5,8 @@ import json
 region_name = 'ap-east-1'
 queue_name = 's3-to-oss'
 max_queue_messages = 10
-aws_access_key_id = 'AKIAT6B4D6Q4WKFK4RJH'
-aws_secret_access_key = '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'
+aws_access_key_id = 'AKIAFK4RJH'
+aws_secret_access_key = 'YodFIlZHtSwDIW'
 sqs = boto3.resource('sqs', region_name=region_name,
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key)

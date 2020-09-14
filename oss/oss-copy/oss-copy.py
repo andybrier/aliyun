@@ -18,6 +18,11 @@ manifest_url = 'https://mybucket.oss-cn-beijing.aliyuncs.com/mybucket/all/2020-0
 
 auth = oss2.Auth(access_key,  access_secret)
 bucket = oss2.Bucket(auth, domain, bucket_name)
+
+directory = ''
+if len(sys.argv) > 1:
+  directory = sys.argv[1]
+
 # proccess single csv file
 def process(inventory):
 
@@ -26,6 +31,8 @@ def process(inventory):
       line_count = 0
       for row in csv_reader:
           key = urlparse.unquote(row[1])
+          if (directory != '' ) and (not key.startswith(directory)):
+            continue
           enc_status = row[7]
           if int(row[2]) > 1073741824 :
             print("file %s is too large." %key)
@@ -39,6 +46,9 @@ def main():
   #down load manifest file 
   menifest_file_name = manifest_url.split("/")[-1]
   bucket.get_object_to_file(urlparse.urlparse(manifest_url).path.lstrip('/'), menifest_file_name)
+  
+
+    
 
   print("success get menifest file: %s" %manifest_url)
   # https://andybrier.oss-cn-beijing.aliyuncs.com'

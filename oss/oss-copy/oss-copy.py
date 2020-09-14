@@ -5,6 +5,7 @@ import urlparse
 import subprocess
 import os
 import json
+import sys
 
 # access key and secret
 access_key = 'LTR'
@@ -23,6 +24,8 @@ bucket = oss2.Bucket(auth, domain, bucket_name)
 directory = ''
 if len(sys.argv) > 1:
   directory = sys.argv[1]
+
+print(directory)
 
 # proccess single csv file
 def process(inventory):

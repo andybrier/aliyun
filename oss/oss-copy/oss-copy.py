@@ -35,7 +35,7 @@ def process(inventory):
       line_count = 0
       for row in csv_reader:
           key = urlparse.unquote(row[1])
-          if (directory == 'NULL-DIR') and (key.startswith('/')):
+          if (directory == 'NULL-DIR') and ( '/' in key):
             continue
           if (directory != ''  and directory != 'NULL-DIR') and (not key.startswith(directory)):
             continue

@@ -8,7 +8,10 @@
  
  ```python
  pip install oss2
- python oss-copy.py
+ python oss-copy.py <目录>
+
+ # 无目录
+ python oss-copy.py  NULL-DIR    
  ```
 
  注意：

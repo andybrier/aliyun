@@ -35,7 +35,9 @@ def process(inventory):
       line_count = 0
       for row in csv_reader:
           key = urlparse.unquote(row[1])
-          if (directory != '' ) and (not key.startswith(directory)):
+          if (directory == 'NULL-DIR') and (key.startswith('/')):
+            continue
+          if (directory != ''  and directory != 'NULL-DIR') and (not key.startswith(directory)):
             continue
           enc_status = row[7]
           if int(row[2]) > 1073741824 :

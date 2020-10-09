@@ -1,6 +1,6 @@
-# s3 实时同步到 oss
+# Sync object from aws s3 to aliyun oss in time
 
-方案：
+How：
  - put object into `s3`
  - trigger event into `SNS`
  - subscribe `SNS` topic and put message into `SQS`

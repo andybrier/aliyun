@@ -3,7 +3,7 @@ import json
 import oss2
 import subprocess
 import urllib
-
+import sys
 
 
 #aws sqs
@@ -15,13 +15,14 @@ sqs = boto3.resource('sqs', region_name=region_name,
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key)
 max_queue_messages = 10
+src_bucket = sys.argv[1]
 
 
 #aliyun
 access_key = 'LTAI4G6hKB'
 access_secret = 'oAOIjO7aa6'
 # bucket name
-bucket_name = 'bucketName'
+bucket_name = sys.argv[2]
 # endpoint for bucket
 domain = 'http://oss-cn-beijing.aliyuncs.com'
 auth = oss2.Auth(access_key,  access_secret)
@@ -44,11 +45,12 @@ while True:
         #print("receive: %s" %body)
         if 'Records' in body:
           for record in body['Records']:
+            bucket = record['s3']['bucket']['name']
             try:
-                if record['eventName'] == 'ObjectCreated:Put' and record['eventSource'] == 'aws:s3':
-                    bucket = record['s3']['bucket']['name']
+                if bucket == src_bucket and record['eventName'] == 'ObjectCreated:Put' and record['eventSource'] == 'aws:s3':
+                    
                     #print(record['s3']['object']['key'])
-                    print(record)
+                    #print(record)
                     key = urllib.unquote_plus(record['s3']['object']['key'].encode('utf8'))
                     lastname = key.split("/")[-1]
                     local = '/tmp/' + lastname

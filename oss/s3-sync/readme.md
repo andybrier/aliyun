@@ -1,5 +1,10 @@
 # Sync object from aws s3 to aliyun oss in time
 
+ ```python
+
+python s3-trigger.py <src_bucket>  <dst_bucket>
+ ```
+
 How：
  - put object into `s3`
  - trigger event into `SNS`

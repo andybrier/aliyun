@@ -9,53 +9,54 @@
  ## SQS Policy: 
 `S3`  `PUT` event to `SQS`
 
- ```json
+S3-to-SNS Policy
+
+```
 {
-  "Version": "2008-10-17",
-  "Id": "__default_policy_ID",
+  "Id": "Policy1602226397417",
+  "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "__owner_statement",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::270709027897:root"
-      },
-      "Action": "SQS:*",
-      "Resource": "arn:aws:sqs:ap-east-1:270709027897:s3-to-oss"
-    },
-    {
-      "Sid": "__sender_statement",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "*"
-      },
-      "Action": "SQS:SendMessage",
-      "Resource": "arn:aws:sqs:ap-east-1:270709027897:s3-to-oss",
-      "Condition": {
-        "StringEquals": {
-          "aws:SourceAccount": "270709027897"
-        },
-        "ArnLike": {
-          "aws:SourceArn": "arn:aws:s3:::hk-bucket-huachun"
-        }
-      }
-    },
-    {
-      "Sid": "__receiver_statement",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::270709027897:role/ec2-read-sqs-role"
-      },
+      "Sid": "Stmt1602226396682",
       "Action": [
-        "SQS:ChangeMessageVisibility",
-        "SQS:DeleteMessage",
-        "SQS:ReceiveMessage"
+        "sns:Publish"
       ],
-      "Resource": "arn:aws:sqs:ap-east-1:270709027897:s3-to-oss"
+      "Effect": "Allow",
+      "Resource": "arn:aws:sns:us-west-2:7905:<SNS>",
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "arn:aws:s3:::<buckect>"
+        }
+      },
+      "Principal": "*"
     }
   ]
 }
+```
 
+
+SNS-to-SQS policy
+ ```
+{
+  "Id": "Policy1602226238398",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1602225506333",
+      "Action": [
+        "sqs:SendMessage"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:sqs:us-west-2:79365:<SQS>",
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "arn:aws:sns:us-west-2:71905:<SNS>"
+        }
+      },
+      "Principal": "*"
+    }
+  ]
+}
 
  ```
 

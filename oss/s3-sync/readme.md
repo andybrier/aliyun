@@ -2,14 +2,14 @@
 
 方案：
  - put object into `s3`
- - trigger event into `SQS` 
+ - trigger event into `SNS`
+ - subscribe `SNS` topic and put message into `SQS`
  - listen to `SQS` and download the object, then put the object into aliyun `oss`
 
 
- ## SQS Policy: 
-`S3`  `PUT` event to `SQS`
+ ##  Policy: 
 
-S3-to-SNS Policy
+`S3-to-SNS` Policy
 
 ```
 {
@@ -35,7 +35,7 @@ S3-to-SNS Policy
 ```
 
 
-SNS-to-SQS policy
+`SNS-to-SQS` policy
  ```
 {
   "Id": "Policy1602226238398",
@@ -59,6 +59,14 @@ SNS-to-SQS policy
 }
 
  ```
+ 
+ AWS Key :
+  - download from `s3`
+  - subscribe and pull messages from `sqs`
+  
+  Aliyun Key:
+  - upload into `oss`
+ 
 
  ref:  [为通知配置一个存储区（SNS主题或SQS队列）](https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/dev/ways-to-add-notification-config-to-bucket.html)
  
@@ -68,6 +76,7 @@ SNS-to-SQS policy
  ## AWS `IAM` for receive message from `SQS` 
 
 Retrive message from aws `SQS`
+
 
 
 ## send object into aliyun `oss`

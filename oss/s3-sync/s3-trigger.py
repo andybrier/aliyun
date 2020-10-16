@@ -4,7 +4,7 @@ import oss2
 import subprocess
 import urllib
 import sys
-
+import time
 
 #aws sqs
 region_name = 'ap-east-1'
@@ -72,3 +72,5 @@ while True:
     if len(messages_to_delete) > 0:
       delete_response = queue.delete_messages(
                 Entries=messages_to_delete)
+    
+    time.sleep(1)

@@ -1,16 +1,15 @@
 import boto3
 import json
-import oss2
-import subprocess
 import urllib
 import sys
+import time
 
 
 #aws sqs
 region_name = 'ap-east-1'
 queue_name = 's3-to-oss'
-aws_access_key_id = 'AKIARJH'
-aws_secret_access_key = 'YodFIlyYpIgRqu7HtSwDIW'
+aws_access_key_id = 'AKIAT6B4D6Q4R5WBONHL'
+aws_secret_access_key = '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'
 sqs = boto3.resource('sqs', region_name=region_name,
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key)
@@ -38,16 +37,18 @@ while True:
         if 'Records' in body:
           for record in body['Records']:
             bucket = record['s3']['bucket']['name']
-            try:
-                if bucket not in buckets:  
+       
+            if bucket not in buckets:  
                     #delete message
-                    messages_to_delete.append({
+                #print("delete : %s"  %bucket)
+                messages_to_delete.append({
                         'Id': message.message_id,
                         'ReceiptHandle': message.receipt_handle
-                    })
-            except:
-                print("error happened when proccessing: %s"  %record)
+                })
+        
 
     if len(messages_to_delete) > 0:
       delete_response = queue.delete_messages(
                 Entries=messages_to_delete)
+
+    time.sleep(1)

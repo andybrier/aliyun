@@ -8,8 +8,8 @@ import time
 #aws sqs
 region_name = 'ap-east-1'
 queue_name = 's3-to-oss'
-aws_access_key_id = 'AKIAT6B4D6Q4R5WBONHL'
-aws_secret_access_key = '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'
+aws_access_key_id = 'AKIAT6NHL'
+aws_secret_access_key = 'hNDzIMKEdJrjViOUN'
 sqs = boto3.resource('sqs', region_name=region_name,
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key)

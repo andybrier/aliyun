@@ -56,7 +56,7 @@ def oss_notify():
      local = download_from_oss(bucket_name, key)
      upload_to_s3(bucket_name,   key, local)
      subprocess.call('rm %s' %local, shell=True)
-   return 'Hello World'
+   return 'Server is OK'
 
 if __name__ == '__main__':
   from waitress import serve

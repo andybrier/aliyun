@@ -26,6 +26,9 @@ pip install oss2
 
 see: https://help.aliyun.com/document_detail/122379.html?spm=a2c4g.11174283.6.837.32847da2TgJRHI
 
+create a http notify.
+[img1](https://github.com/andybrier/aliyun/blob/8e6f2e893cb5690a51a065f00e58e6ea77a150d2/oss/oss-to-s3/oss-setup-1.jpg)
+[img2](https://github.com/andybrier/aliyun/blob/8e6f2e893cb5690a51a065f00e58e6ea77a150d2/oss/oss-to-s3/oss-setup-2.jpg)
 
 # run the code 
 - copy `app.py` to dir: `oss-to-s3`

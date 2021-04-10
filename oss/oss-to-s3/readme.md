@@ -14,8 +14,11 @@ cd oss-to-s3
 python -m virtualenv venv
 . venv/bin/activate
 
-#install flask
+#install 
 pip install Flask
+pip install waitress
+pip install boto3
+pip install oss2
 ```
 
 

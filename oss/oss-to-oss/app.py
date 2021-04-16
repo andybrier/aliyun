@@ -10,18 +10,21 @@ import oss2
 import subprocess
 import urllib
 
+####################################### CHNAGE THIS #######################################
 # auth info for source oss
-src_auth = { 'access_key' : 'LTAI5tM6dnFHirXjUkADSrnB',   'access_secret' :  '6DyNAtHUT2ObSVMYLmZXSFjFqykzTq'}
+src_auth = { 'access_key' : '',   'access_secret' :  ''}
 
 # auth info for destination oss
-dst_auth = { 'access_key' : 'LTAI5tM6dnFHirXjUkADSrnB',   'access_secret' :  '6DyNAtHUT2ObSVMYLmZXSFjFqykzTq'}
+dst_auth = { 'access_key' : '',   'access_secret' :  ''}
 
 # src bucket --> dst bucket
-bucket_mappings = {'andybrier' :  'us-bucket-andy' }
+bucket_mappings = {'SRC_BUCKET' :  'DST_BUCKET' }
 
 # bucket endpoint mappings
-bucket_domain_mappings =  {'andybrier' : 'oss-cn-beijing.aliyuncs.com',  
-                           'us-bucket-andy': 'oss-us-west-1.aliyuncs.com'}
+bucket_domain_mappings =  {'SRC_BUCKET' : 'oss-cn-beijing.aliyuncs.com',  
+                           'DST_BUCKET': 'oss-us-west-1.aliyuncs.com'}
+
+####################################### CHNAGE THIS #######################################
 
 
 def download_from_oss(bucket_name, object_key):
@@ -58,7 +61,7 @@ app = Flask(__name__)
 def oss_notify():
    data = base64.b64decode(request.data)
    body = json.loads(data)
-   for event in body['events'] ： 
+   for event in body['events']:
      bucket_name = event['oss']['bucket']['name']
      key = event['oss']['object']['key']
      local = download_from_oss(bucket_name, key)
